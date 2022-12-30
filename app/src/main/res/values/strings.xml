@@ -1,9 +1,14 @@
 <resources>
-    <string name="app_name">LanguageTranslatorApp</string>
+    <string name="app_name">Translate English to hindi</string>
 
     <string name="translate_loading">Translate button will be enabled after translation model is downloaded.\n\nPlease wait…</string>
     <string name="translate_btn">Translate</string>
     <string name="smart_reply_error">The conversation\'s language isn\'t supported, so the result doesn\'t contain any suggestions.</string>
     <string name="english">English</string>
     <string name="hindi">Hindi</string>
+    <string name="write_something_here_hindi">यहाँ कुछ लिखें</string>
+    <string name="write_something_here">Write something here</string>
+    <string name="english_hi">इंग्लिश</string>
+    <string name="hindi_hi">हिंदी</string>
+    <string name="e">English</string>
 </resources>

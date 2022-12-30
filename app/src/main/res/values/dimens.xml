@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="top_bar_margin">20dp</dimen>
+    <dimen name="toolbar_textsize">16sp</dimen>
+</resources>

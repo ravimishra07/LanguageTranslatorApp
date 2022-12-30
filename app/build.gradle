@@ -29,6 +29,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -43,5 +46,8 @@ dependencies {
 
     //ML kit
     implementation 'com.google.mlkit:translate:17.0.1'
+    //AdMob
+    implementation 'com.google.android.gms:play-services-ads:21.4.0'
+
 
 }
