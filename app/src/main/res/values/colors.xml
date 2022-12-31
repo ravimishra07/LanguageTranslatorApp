@@ -10,5 +10,6 @@
     <color name="app_bg">#20242A</color>
     <color name="top_bar_background">#2B3038</color>
     <color name="toolbar_text_color">#98A8BA</color>
+    <color name="privacy_policy_text_color">#F3F5FA</color>
     <color name="app_purple">#2A36AF</color>
 </resources>

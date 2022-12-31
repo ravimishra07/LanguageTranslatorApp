@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.notifications.NotificationsFragment">
+
+
+    <TextView
+        android:id="@+id/tvPrivacyPolicy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/averia_sans_libre"
+        android:text="Privacy Policy"
+        android:textStyle="bold"
+        android:textColor="@color/privacy_policy_text_color"
+        android:textSize="18sp"
+        android:layout_marginTop="18dp"
+        android:layout_marginStart="12dp"
+        android:drawablePadding="12dp"
+        android:drawableStart="@drawable/ic_privacy_policy"
+        android:drawableTint="@color/privacy_policy_text_color"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

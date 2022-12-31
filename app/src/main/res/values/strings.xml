@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Translate English to hindi</string>
+    <string name="app_name">iTranslate</string>
 
     <string name="translate_loading">Translate button will be enabled after translation model is downloaded.\n\nPlease wait…</string>
     <string name="translate_btn">Translate</string>
@@ -11,4 +11,12 @@
     <string name="english_hi">इंग्लिश</string>
     <string name="hindi_hi">हिंदी</string>
     <string name="e">English</string>
+    <string name="add_id">ca-app-pub-4749277994804943/2184168454</string>
+    <string name="add_interstitial_id">ca-app-pub-4749277994804943/3818428720</string>
+    <string name="prod_manifest_id">ca-app-pub-4749277994804943~6712223369</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="settings">Settings</string>
 </resources>

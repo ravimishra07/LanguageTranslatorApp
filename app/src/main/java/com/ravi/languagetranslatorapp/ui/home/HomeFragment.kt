@@ -1,4 +1,4 @@
-package com.ravi.languagetranslatorapp
+package com.ravi.languagetranslatorapp.ui.home
 
 import android.content.ActivityNotFoundException
 import android.content.ClipData
@@ -9,52 +9,76 @@ import android.speech.RecognizerIntent
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.view.animation.RotateAnimation
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.ads.*
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.mlkit.common.model.DownloadConditions
-import com.google.mlkit.nl.translate.TranslateLanguage.ENGLISH
-import com.google.mlkit.nl.translate.TranslateLanguage.HINDI
+import com.google.mlkit.nl.translate.TranslateLanguage
 import com.google.mlkit.nl.translate.Translation
 import com.google.mlkit.nl.translate.Translator
 import com.google.mlkit.nl.translate.TranslatorOptions
-import com.ravi.languagetranslatorapp.databinding.ActivityMainBinding
+import com.ravi.languagetranslatorapp.databinding.FragmentHomeBinding
+import com.ravi.languagetranslatorapp.toast
 import java.util.*
 
+class HomeFragment : Fragment() {
 
-class MainActivity : AppCompatActivity() {
-    lateinit var binding: ActivityMainBinding
+    private var _binding: FragmentHomeBinding? = null
+
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
+
+
     private lateinit var engToHiTranslatorOption: TranslatorOptions
     private lateinit var hiToEngTranslatorOption: TranslatorOptions
     private lateinit var engToHiTranslator: Translator
     private lateinit var hiToEngTranslator: Translator
 
     private var mInterstitialAd: InterstitialAd? = null
-   // private val testAddId = "ca-app-pub-3940256099942544/1033173712"
-   // val prodAddId = "ca-app-pub-4749277994804943/3818428720"
+    // private val testAddId = "ca-app-pub-3940256099942544/1033173712"
+    // val prodAddId = "ca-app-pub-4749277994804943/3818428720"
     var isTranslateToHindi = true
-   lateinit var clipboard: ClipboardManager
+    lateinit var clipboard: ClipboardManager
     lateinit var clipData: ClipData
     var interstitialCounter = 1
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        clipboard = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        val homeViewModel =
+            ViewModelProvider(this).get(HomeViewModel::class.java)
+
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+
+        clipboard = requireActivity().getSystemService(AppCompatActivity.CLIPBOARD_SERVICE) as ClipboardManager
         setTextWatchers()
         setTranslator()
         initializeInterstitialAdds()
         initializeBannerAdd()
         setListeners()
+        return root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
     fun speechToTextTapped() {
         val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
@@ -76,7 +100,7 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 200) {
-            if (resultCode == RESULT_OK && data != null) {
+            if (resultCode == AppCompatActivity.RESULT_OK && data != null) {
                 val result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)!!
                 binding.etFirstLang.setText(result[0])
                 if (isTranslateToHindi){
@@ -88,12 +112,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
     private fun hideSoftKeyboard() {
-        val inputMethodManager: InputMethodManager = getSystemService(
-            INPUT_METHOD_SERVICE
+        val inputMethodManager: InputMethodManager = requireActivity().getSystemService(
+            AppCompatActivity.INPUT_METHOD_SERVICE
         ) as InputMethodManager
         if (inputMethodManager.isAcceptingText) {
             inputMethodManager.hideSoftInputFromWindow(
-                currentFocus!!.windowToken,
+                requireActivity().currentFocus!!.windowToken,
                 0
             )
         }
@@ -101,17 +125,17 @@ class MainActivity : AppCompatActivity() {
     private fun switchLanguage(){
         isTranslateToHindi = !isTranslateToHindi
         if(isTranslateToHindi){
-            binding.tvFirst.text = getText(R.string.english)
-            binding.tvSecond.text = getText(R.string.hindi)
-            binding.tvFirstSideLabel.text =getText(R.string.english)
-            binding.tvSecondSideLabel.text =getText(R.string.hindi)
-            binding.etFirstLang.hint =getText(R.string.write_something_here)
+            binding.tvFirst.text = getText(com.ravi.languagetranslatorapp.R.string.english)
+            binding.tvSecond.text = getText(com.ravi.languagetranslatorapp.R.string.hindi)
+            binding.tvFirstSideLabel.text =getText(com.ravi.languagetranslatorapp.R.string.english)
+            binding.tvSecondSideLabel.text =getText(com.ravi.languagetranslatorapp.R.string.hindi)
+            binding.etFirstLang.hint =getText(com.ravi.languagetranslatorapp.R.string.write_something_here)
         }else{
-            binding.tvFirst.text = getText(R.string.hindi)
-            binding.tvSecond.text = getText(R.string.english)
-            binding.tvFirstSideLabel.text =getText(R.string.hindi)
-            binding.tvSecondSideLabel.text =getText(R.string.english)
-            binding.etFirstLang.hint =getText(R.string.write_something_here_hindi)
+            binding.tvFirst.text = getText(com.ravi.languagetranslatorapp.R.string.hindi)
+            binding.tvSecond.text = getText(com.ravi.languagetranslatorapp.R.string.english)
+            binding.tvFirstSideLabel.text =getText(com.ravi.languagetranslatorapp.R.string.hindi)
+            binding.tvSecondSideLabel.text =getText(com.ravi.languagetranslatorapp.R.string.english)
+            binding.etFirstLang.hint =getText(com.ravi.languagetranslatorapp.R.string.write_something_here_hindi)
         }
     }
     private fun copyToClipBoard(text: String) {
@@ -144,13 +168,13 @@ class MainActivity : AppCompatActivity() {
 
         // Create an English-Hindi translator:
         engToHiTranslatorOption = TranslatorOptions.Builder()
-            .setSourceLanguage(ENGLISH)
-            .setTargetLanguage(HINDI)
+            .setSourceLanguage(TranslateLanguage.ENGLISH)
+            .setTargetLanguage(TranslateLanguage.HINDI)
             .build()
 
         hiToEngTranslatorOption = TranslatorOptions.Builder()
-            .setSourceLanguage(HINDI)
-            .setTargetLanguage(ENGLISH)
+            .setSourceLanguage(TranslateLanguage.HINDI)
+            .setTargetLanguage(TranslateLanguage.ENGLISH)
             .build()
 
         engToHiTranslator = Translation.getClient(engToHiTranslatorOption)
@@ -163,7 +187,7 @@ class MainActivity : AppCompatActivity() {
             rotateSwitchIcon()
         }
         binding.ivCopyFirst.setOnClickListener {
-           copyToClipBoard(binding.etFirstLang.text.toString())
+            copyToClipBoard(binding.etFirstLang.text.toString())
         }
         binding.ivCopySecond.setOnClickListener {
             copyToClipBoard(binding.tvSecondLang.text.toString())
@@ -202,8 +226,8 @@ class MainActivity : AppCompatActivity() {
     private fun initializeInterstitialAdds() {
         val adRequest = AdRequest.Builder().build()
         InterstitialAd.load(
-            this,
-            getString(R.string.add_interstitial_id),
+            requireActivity(),
+            getString(com.ravi.languagetranslatorapp.R.string.add_interstitial_id),
             adRequest,
             object : InterstitialAdLoadCallback() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
@@ -222,13 +246,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun showInterstitialAdd(){
         if (mInterstitialAd != null) {
-            mInterstitialAd?.show(this@MainActivity)
+            mInterstitialAd?.show(requireActivity())
         } else {
             Log.d(TAG, "The interstitial ad wasn't ready yet.")
         }
     }
     private fun initializeBannerAdd(){
-        MobileAds.initialize(this) {}
+        MobileAds.initialize(requireActivity()) {}
 
         val adRequest1 = AdRequest.Builder().build()
         val adRequest2 = AdRequest.Builder().build()
@@ -370,7 +394,4 @@ class MainActivity : AppCompatActivity() {
     companion object {
         var TAG = "yayy"//this::class.java.simpleName.toString()
     }
-}
-fun View.toast(text: String){
-    Toast.makeText(this.context,text, Toast.LENGTH_LONG).show()
 }

@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/app_bg">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/app_bg">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/clToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="20dp"
+            android:backgroundTint="@color/top_bar_background"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvFirst"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/comfortaa"
+                    android:gravity="center"
+                    android:text="@string/english"
+                    android:textColor="@color/toolbar_text_color"
+                    android:textSize="@dimen/toolbar_textsize"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_lang_switch"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_lang_switch"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:layout_margin="12dp"
+                    android:background="@drawable/circle_shape"
+                    android:padding="8dp"
+                    android:src="@drawable/switch_language"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvSecond"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/comfortaa"
+                    android:gravity="center"
+                    android:text="@string/hindi"
+                    android:textColor="@color/toolbar_text_color"
+                    android:textSize="@dimen/toolbar_textsize"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/iv_lang_switch"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_first_lang"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_margin="20dp"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="@color/top_bar_background"
+            android:minHeight="250dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/clToolbar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <TextView
+                    android:id="@+id/tvFirstSideLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/comfortaa"
+                    android:gravity="center"
+                    android:text="@string/english"
+                    android:textColor="@color/toolbar_text_color"
+                    android:textSize="12sp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:background="@drawable/first_side_label_bg"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/et_first_lang"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@null"
+                    android:fontFamily="@font/comfortaa"
+                    android:gravity="top"
+                    android:hint="@string/write_something_here"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textColor="@color/toolbar_text_color"
+                    android:textColorHint="@color/toolbar_text_color"
+
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@+id/iv_mic"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <ImageView
+                    android:id="@+id/iv_mic"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:padding="3dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_marginBottom="4dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/ic_mic"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:tint="@color/toolbar_text_color" />
+
+                <ImageView
+                    android:id="@+id/iv_copy_first"
+                    android:layout_width="29dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_copy"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginBottom="4dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_mic"
+                    app:tint="@color/toolbar_text_color" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adViewMed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:adSize="LARGE_BANNER"
+            android:layout_marginTop="4dp"
+            app:adUnitId="@string/add_id"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_first_lang"/>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_second_lang"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="6dp"
+            android:backgroundTint="@color/app_purple"
+            android:minHeight="250dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/adViewMed">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+                <TextView
+                    android:id="@+id/tvSecondSideLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/comfortaa"
+                    android:gravity="center"
+                    android:text="@string/hindi"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:background="@drawable/second_side_label_bg"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_second_lang"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@null"
+                    android:fontFamily="@font/comfortaa"
+                    android:gravity="top"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@+id/iv_copy_second"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_copy_second"
+                    android:layout_width="29dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_copy"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginBottom="4dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:tint="@color/toolbar_text_color" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.cardview.widget.CardView>
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adViewBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:adSize="LARGE_BANNER"
+            android:layout_marginTop="4dp"
+            app:adUnitId="@string/add_id"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_second_lang"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
